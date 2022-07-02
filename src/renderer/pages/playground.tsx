@@ -5,6 +5,7 @@ import { Box, Typography } from '@mui/material';
 const Playground = (props: any)=>{
     const [connected,setConnected] = useState(false)
     const [username,setUsername] = useState<string>('');
+    const [ipLogin,setIpLogin] = useState('1.0.0.2')
     const [password,setPassword] = useState<string>('')
     const [runOnce,setRunOnce] = useState(false)
     const [useEffectOnce,setUseEffectOnce] = useState(false)
@@ -19,6 +20,11 @@ const Playground = (props: any)=>{
     const logsRef = useRef(null);
     useEffect( ()=>{
       if(!useEffectOnce){
+        window.electron.ipcRenderer.on("error",()=>{
+          alert("some error occured")
+          console.log('error client recieved')
+          window.location.reload();
+        })
            //@ts-ignore
             window.electron.ipcRenderer.on("connected",()=>{
               setConnected(true)
@@ -60,11 +66,12 @@ const Playground = (props: any)=>{
 
     const handleConnectTelnet = (e: any) =>{
       e.preventDefault();
-      if(!runOnce && username && password){
+      if(!runOnce && username && password && ipLogin){
         //@ts-ignore
          window.electron.ipcRenderer.connectTelnet({
+            ip:ipLogin,
             username,
-            password
+            password,
         })
         setRunOnce(true)
       }
@@ -198,6 +205,16 @@ const Playground = (props: any)=>{
                 <h1>Telneting a device</h1>
                 <table>
                    <tbody>
+                         <tr>
+                            <td><div>Ip: </div></td> 
+                            <td>
+                              <input 
+                                value={ipLogin}
+                                onChange={(e)=>setIpLogin(e.target.value)}
+                              
+                              />
+                            </td>
+                        </tr>
                         <tr>
                           <td><div>Username: </div></td> 
                           <td>
@@ -207,6 +224,7 @@ const Playground = (props: any)=>{
                             />
                           </td>
                         </tr>
+                      
                         <tr>
                           <td><div>password: </div></td> 
                           <td>

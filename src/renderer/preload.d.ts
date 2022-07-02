@@ -5,7 +5,7 @@ declare global {
     electron: {
       ipcRenderer: {
         sendMessage(channel: Channels, args: unknown[]): void;
-        connectTelnet(): void;
+        connectTelnet(args: {username:string,ip:string,password:string}): void;
         execCommand(args:string):void;
         on(
           channel: string,

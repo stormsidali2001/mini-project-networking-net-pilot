@@ -34,29 +34,35 @@ ipcMain.on("execCommand",(e,args)=>{
   }
 })
 
-let tmpStirng = '';
 
-ipcMain.on("connectTelnet",(e,args)=>{
+let tmpStirng = '';
+let password: any;
+let username: string;
+
+ipcMain.on("connectTelnet",(e,{username:u,password:p,ip:ipAddress})=>{
+    console.log(username,password,ipAddress)
     client = new net.Socket();
-    console.log(args,"..........",isPassword)
     client.setEncoding('utf8')
-    
-      client.connect(23, '1.0.0.1', function() {
+     
+        client.connect(23, ipAddress, function() {
           console.log('Connected');
-         
+          password = p;
+          username = u;
           
       });
+
+     
 
     
       client.on('data', function(data:any) {
           console.log('Received: ' + data,isPassword);
            connected = true;       
            if((data as String).includes('Password:')){
-            client.write('cisco\r\n');
+            client.write(password+'\r\n');
              isPassword = true;
             }
             if((data as String).includes('Username:')){
-              client.write('cisco\r\n');
+              client.write(username+'\r\n');
               isUserName = true;
              }
 
@@ -88,6 +94,11 @@ ipcMain.on("connectTelnet",(e,args)=>{
       client.on('timeout',()=>{
         connected = false;
         console.log('timeout')
+      })
+      client.on('error',()=>{
+        connected = false;
+        console.log('error')
+        e.reply("error")
       })
 
   })

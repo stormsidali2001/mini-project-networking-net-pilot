@@ -7,8 +7,8 @@ contextBridge.exposeInMainWorld('electron', {
     sendMessage(channel: Channels, args: unknown[]) {
       ipcRenderer.send(channel, args);
     },
-    connectTelnet(){
-      ipcRenderer.send("connectTelnet")
+    connectTelnet(args:{username:string,password:string,ip:string}){
+      ipcRenderer.send("connectTelnet",args)
 
     },
     execCommand(args:string){
