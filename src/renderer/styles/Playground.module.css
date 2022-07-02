@@ -1,0 +1,140 @@
+.container {
+  min-height: 100vh;
+
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 10px auto;
+}
+.configOptions {
+  width: 60vw;
+  margin: 4px auto;
+  display: flex;
+  padding: 4px 8px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  box-shadow: 2px 4px 3px 3px rgba(0, 0, 0, 0.1); /*x y blur spread color*/
+  background-color: rgba(70, 70, 70, 0.05);
+  backdrop-filter: blur(2px);
+  border-radius: 10px;
+}
+.configOptions div {
+  background-color: rgba(0, 0, 0, 0.2);
+  box-shadow: 1px 1px 5px 1px rgba(255, 255, 255, 0.05);
+  padding: 4px 8px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all ease-in;
+}
+.configOptions div:hover {
+  opacity: 80%;
+  transform: scale(1.05);
+}
+.commandForm {
+  /* width: 300px; */
+  margin: 4px auto;
+}
+.commandForm input {
+  width: inherit;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.connectMsg {
+  text-align: center;
+}
+.logsBox {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(70, 70, 70, 0.05);
+  width: 60vw;
+  margin: 4px auto;
+  box-shadow: 2px 4px 3px 3px rgba(0, 0, 0, 0.1); /*x y blur spread color*/
+  background-color: rgba(70, 70, 70, 0.05);
+  backdrop-filter: blur(2px);
+  border-radius: 10px;
+  padding: 4px 8px;
+  row-gap: 10px;
+
+  height: 50vh;
+}
+.logsContainer {
+  width: 90%;
+  height: 80%;
+  margin: 8px auto;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  overflow-y: auto;
+  padding: 8px 4px;
+  font-size: 12px;
+  font-family: cursive;
+  font-weight: 200;
+}
+
+.logsContainer > div {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  padding: 6px 7px;
+
+  height: fit-content;
+  word-break: break-all;
+  white-space: pre-wrap;
+}
+
+.loginForm {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 4px;
+  margin: 100px auto;
+  box-shadow: 2px 4px 3px 3px rgba(0, 0, 0, 0.1); /*x y blur spread color*/
+  background-color: rgba(70, 70, 70, 0.05);
+  backdrop-filter: blur(2px);
+  border-radius: 10px;
+  row-gap: 10px;
+}
+.loginForm > table {
+  margin: 0 auto;
+}
+.loginForm > h1 {
+  font-size: 24px;
+  margin: 0 auto;
+}
+
+.loginForm button {
+  margin: 0 auto;
+  background-color: var(--gray-2);
+  border: 1px solid var(--gray-0);
+  color: white;
+  border-radius: 10px;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+.loginForm button:hover {
+  opacity: 80%;
+  transform: scale(1.05);
+  transition: all ease-in;
+}
+
+/***/
+.modalContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+.modalContainer button {
+  background: var(--gray-0);
+  color: white;
+  width: fit-content;
+  padding: 4px 8px;
+  border: none;
+  border-radius: 10px;
+  margin: 0 auto;
+  cursor: pointer;
+  transition: all ease-in;
+}
+.modalContainer button:hover {
+  transform: scale(1.05);
+}
